@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #17141d;
+            color: white;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .card-list {
+            display: flex;
+            padding: 3rem;
+            overflow-x: scroll;
+        }
+
+
+        .card-list::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        .card-list::-webkit-scrollbar-thumb {
+            background: #201c29;
+            border-radius: 10px;
+            box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25), inset -2px -2px 2px rgba(0,0,0,.25);
+        }
+
+        .card-list::-webkit-scrollbar-track {
+            background: linear-gradient(90deg,#201c29,#201c29 1px,#17141d 0,#17141d);
+        }
+
+
+        .card {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            height: 350px;
+            width: 400px;
+            min-width: 250px;
+            padding: 1.5rem;
+        }
+        .card {
+            /* ... */
+
+            border-radius: 16px;
+            background: #17141d;
+            box-shadow: -1rem 0 3rem #000;
+
+            transition: .2s;
+        }
+
+        .card:hover {
+            transform: translateY(-1rem);
+        }
+
+        .card:hover~.card {
+            transform: translateX(130px);
+        }
+
+
+        .card:not(:first-child) {
+            margin-left: -130px;
+        }
+        .card-author {
+            position: relative;
+            display: grid;
+            grid-template-columns: 75px 1fr;
+            align-items: center;
+            margin: 3rem 0 0;
+        }
+
+        .author-avatar img {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            filter: grayscale(50%);
+            margin: 16px 10px;
+        }
+
+        .half-circle {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 48px;
+            fill: none;
+            stroke: #ff8a00;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+        .card-header {
+            margin-bottom: auto;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            margin: 0 0 1rem;
+            color: #7a7a8c;
+        }
+
+        .card-header h2 {
+            font-size: 20px;
+            margin: .25rem 0 auto;
+            cursor: pointer;
+        }
+
+        .card-header h2:hover {
+            background: linear-gradient(90deg,#ff8a00,#e52e71);
+            text-shadow: none;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tags {
+            margin: 1rem 0 2rem;
+            padding: .5rem 0 1rem;
+            line-height: 2;
+            margin-bottom: 0;
+        }
+
+        .tags a {
+            font-style: normal;
+            font-weight: 700;
+            font-size: .5rem;
+            color: #7a7a8c;
+            text-transform: uppercase;
+            font-size: .66rem;
+            border: 3px solid #28242f;
+            border-radius: 2rem;
+            padding: .2rem .85rem .25rem;
+            position: relative;
+        }
+
+        .tags a:hover {
+            background: linear-gradient(90deg,#ff8a00,#e52e71);
+            text-shadow: none;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-box-decoration-break: clone;
+            background-clip: text;
+            border-color: white;
+        }
+    </style>
+</head>
+<body>
+<section class="card-list">
+    <article class="card">
+        <header class="card-header">
+            <p>Sep 11th 2020</p>
+            <h2>ACADEMIC ARCHIVE</h2>
+        </header>
+
+        <div class="card-author">
+            <a class="author-avatar" href="#">
+                <img src="http://www.placebear.com/50/50?index=random" />
+            </a>
+            <svg class="half-circle" viewBox="0 0 106 57">
+                <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+            </svg>
+
+            <div class="author-name">
+                <div class="author-name-prefix">FACULTY</div>
+                BIT
+            </div>
+        </div>
+
+        <div class="tags">
+            <a th:href="@{/files}">lvl:100</a>
+            <a th:href="@{/files2}">lvl:200</a>
+            <a th:href="@{/files3}">lvl:300</a>
+            <a th:href="@{/files4}">lvl:400</a>
+        </div>
+    </article>
+    <article class="card">
+        <header class="card-header">
+            <p>Sep 11th 2020</p>
+            <h2>ACADEMIC ARCHIVE</h2>
+        </header>
+
+        <div class="card-author">
+            <a class="author-avatar" href="#">
+                <img src="https://baconmockup.com/50/50/random" />
+            </a>
+            <svg class="half-circle" viewBox="0 0 106 57">
+                <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+            </svg>
+
+            <div class="author-name">
+                <div class="author-name-prefix">FACULTY</div>
+                ENGINEERING
+            </div>
+        </div>
+
+        <div class="tags">
+            <a href="#">lvl:100</a>
+            <a href="#">lvl:200</a>
+            <a href="#">lvl:300</a>
+            <a href="#">lvl:400</a>
+        </div>
+    </article>
+    <article class="card">
+        <header class="card-header">
+            <p>Sep 11th 2020</p>
+            <h2>ACADEMIC ARCHIVE</h2>
+        </header>
+
+        <div class="card-author">
+            <a class="author-avatar" href="#">
+                <img src="https://unsplash.it/70/50/?random" />
+            </a>
+            <svg class="half-circle" viewBox="0 0 106 57">
+                <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+            </svg>
+
+            <div class="author-name">
+                <div class="author-name-prefix">FACULTY</div>
+                DIT
+            </div>
+        </div>
+
+        <div class="tags">
+            <a href="#">lvl:100</a>
+            <a href="#">lvl:200</a>
+            <a href="#">lvl:300</a>
+            <a href="#">lvl:400</a>
+        </div>
+    </article>
+    <article class="card">
+        <header class="card-header">
+            <p>Sep 11th 2020</p>
+            <h2>ACADEMIC ARCHIVE</h2>
+        </header>
+
+        <div class="card-author">
+            <a class="author-avatar" href="#">
+                <img src="https://unsplash.it/70/51/?random" />
+            </a>
+            <svg class="half-circle" viewBox="0 0 106 57">
+                <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+            </svg>
+
+            <div class="author-name">
+                <div class="author-name-prefix">FACULTY</div>
+                BUSINESS
+            </div>
+        </div>
+
+        <div class="tags">
+            <a href="#">lvl:100</a>
+            <a href="#">lvl:200</a>
+            <a href="#">lvl:300</a>
+            <a href="#">lvl:400</a>
+        </div>
+    </article>
+</section>
+
+
+
+
+</body>
+</html>

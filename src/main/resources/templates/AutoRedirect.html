@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirect</title>
+    <style>
+        body {
+            background: rgb(107, 216, 97);
+        }
+        h4 {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            margin: 0;
+            font-weight: 200;
+            opacity: 1;
+            font-family: sans-serif;
+            color: #fff;
+        }
+        #loader {
+            animation: animate 1.5s linear infinite;
+            clip: rect(0, 80px, 80px, 40px);
+            height: 80px;
+            width: 80px;
+            position: absolute;
+            left: calc(50% - 40px);
+            top: calc(50% - 40px);
+        }
+        @keyframes animate {
+            0% {
+                transform: rotate(0deg)
+            }
+            100% {
+                transform: rotate(220deg)
+            }
+        }
+        #loader:after {
+            animation: animate2 1.5s ease-in-out infinite;
+            clip: rect(0, 80px, 80px, 40px);
+            content:'';
+            border-radius: 50%;
+            height: 80px;
+            width: 80px;
+            position: absolute;
+        }
+        @keyframes animate2 {
+            0% {
+                box-shadow: inset #fff 0 0 0 17px;
+                transform: rotate(-140deg);
+            }
+            50% {
+                box-shadow: inset #fff 0 0 0 2px;
+            }
+            100% {
+                box-shadow: inset #fff 0 0 0 17px;
+                transform: rotate(140deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="loader"></div>
+<p style="text-align: center; font-size: 50px; font-weight: 500; margin: 100px auto;">You should be automatically redirected in <span id="seconds"></span> ...
+</p>
+
+</body>
+<script>
+    // Countdown timer for redirecting to another URL after several seconds
+
+    var seconds = 7; // seconds for HTML
+    var foo; // variable for clearInterval() function
+
+    function redirect() {
+        document.location.href = 'http://localhost:4329/login';
+    }
+
+    function updateSecs() {
+        document.getElementById("seconds").innerHTML = seconds;
+        seconds--;
+        if (seconds === -1) {
+            clearInterval(foo);
+            redirect();
+        }
+    }
+
+    function countdownTimer() {
+        foo = setInterval(function () {
+            updateSecs()
+        }, 1000);
+    }
+
+    countdownTimer();
+</script>
+</html>
